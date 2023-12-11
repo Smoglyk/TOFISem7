@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, Request, Response, Form, Query
 from pydantic import BaseModel, EmailStr, validator
 import supabase
-from settings import settings
+#from settings import settings
 from dependencies.session import get_db
 from services.auth_user import registration_user, verify_user, login_user
 from fastapi.templating import Jinja2Templates

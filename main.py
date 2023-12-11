@@ -1,5 +1,5 @@
 from fastapi import FastAPI, Request, Depends, Form
-from settings import settings
+# from settings import settings
 import supabase
 from user.views import userroute
 from sqlalchemy.ext.declarative import declarative_base
