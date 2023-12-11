@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaction Page</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            width: 100%;
+        }
+
+        section {
+            margin: 20px;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .transaction-section {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        button {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+
+        a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Transaction Page</h1>
+    </header>
+
+    <section>
+        <div class="transaction-section">
+            <h2>Credit Transactions</h2>
+            <form action="item" method="get">
+                <input type="hidden" name="type_item" value="credit">
+                <button type="submit">View Credit Transactions</button>
+            </form>
+        </div>
+    </section>
+
+    <section>
+        <div class="transaction-section">
+            <h2>Remittance Transactions</h2>
+            <form action="item" method="get">
+                 <input type="hidden" name="type_item" value="remittance">
+                <button type="submit">View Remittance Transactions</button>
+            </form>
+        </div>
+    </section>
+
+    <section>
+        <div class="transaction-section">
+            <h2>Payment Transactions</h2>
+            <form action="item" method="get">
+                 <input type="hidden" name="type_item" value="payment">
+                <button type="submit">View Payment Transactions</button>
+            </form>
+        </div>
+    </section>
+
+</body>
+</html>

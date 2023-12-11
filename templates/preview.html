@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bank Dashboard</title>
+  <link rel="stylesheet" href="static/style.css">
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    .section {
+      background-color: #fff;
+      padding: 20px;
+      margin-top: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 80%;
+      max-width: 400px;
+    }
+
+    h2 {
+      color: #333;
+      margin-bottom: 15px;
+    }
+
+    .profile-section {
+      background-color: #4caf50;
+      color: #fff;
+    }
+
+    .transaction-section {
+      background-color: #2196f3;
+      color: #fff;
+    }
+
+    .credit-section {
+      background-color: #ff9800;
+      color: #fff;
+    }
+
+    .button-like-link {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            cursor: pointer;
+    }
+
+    a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <h1>Welcome to Your Bank Dashboard</h1>
+
+  <div class="section profile-section">
+    <h2>Profile</h2>
+    <a href="account" class="button-like-link">View your account profile</a>
+  </div>
+
+  <div class="section transaction-section">
+    <h2>Transactions</h2>
+    <p>Make transactions <a href="#">here</a>.</p>
+  </div>
+
+  <div class="section credit-section">
+    <h2>Credit</h2>
+    <p>Apply for a credit <a href="#">here</a>.</p>
+  </div>
+</body>
+</html>

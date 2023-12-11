@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Введите код</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .code-form {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 300px; /* Уменьшил ширину формы */
+      text-align: center;
+    }
+
+    .code-form h2 {
+      color: #333;
+    }
+
+    .code-input {
+      margin-top: 10px;
+    }
+
+    .code-input input {
+      display: block;
+      margin: 10px auto; /* Расположение по центру и добавление отступов */
+      padding: 10px;
+      box-sizing: border-box;
+      border: 3px solid #ccc;
+      border-radius: 10px;
+      font-size: 16px;
+      text-align: center;
+      width: 80%; /* Ширина 80% от родительского контейнера */
+    }
+
+    .error-message {
+      color: #d9534f; /* Красный цвет для сообщения об ошибке */
+      margin-top: 10px;
+    }
+
+    .form-group button {
+      background-color: #4caf50;
+      color: #fff;
+      padding: 10px 15px;
+      margin-top: 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .form-group button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <div class="code-form">
+    <h2>Input code</h2>
+    <form id="verifyForm" method="post" action="verify">
+      <div class="code-input">
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="text" name="code" placeholder="Code" required>
+      </div>
+       {% if show_error %}
+        <div class="error-message" id="error-message">Code is wrong</div>
+      {% else %}
+        <div class="error-message" id="error-message"></div>
+      {% endif %}
+      <div class="form-group">
+        <button type="submit">Continue</button>
+      </div>
+    </form>
+  </div>
+
+</body>
+</html>

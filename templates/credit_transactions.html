@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credit Transactions</title>
+    <!-- Добавьте свои стили здесь, если нужно -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Credit Transactions</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Borrower</th>
+                <th>Type Credit</th>
+                <th>Date</th>
+                <th>Sum Payment</th>
+                <th>Percent</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for transaction in transactions %}
+                <tr>
+                    <td>{{ transaction.borrower.user.name }}</td>
+                    <td>{{ transaction.credit.type }}</td>
+                    <td>{{ transaction.date }}</td>
+                    <td>{{ transaction.sum_payment }}</td>
+                    <td>{{ transaction.credit.procent }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
