@@ -58,19 +58,15 @@
                 <th>Commission</th>
                 <th>Currency</th>
                 <th>Date</th>
-                <th>Receiver</th>
-                <th>Success</th>
             </tr>
         </thead>
         <tbody>
             {% for transaction in transactions %}
                 <tr>
-                    <td>{{ transaction.count }}</td>
-                    <td>{{ transaction.commission }}</td>
-                    <td>{{ transaction.currency.name }}</td>
+                    <td>{{ transaction.borrower.user.name }}</td>
+                    <td>{{ transaction.sum_payment }}</td>
+                    <td>{{ transaction.credit.procent }}</td>
                     <td>{{ transaction.date }}</td>
-                    <td>{{ transaction.receiver.user.name }}</td>
-                    <td>{{ transaction.success }}</td>
                 </tr>
             {% endfor %}
         </tbody>
