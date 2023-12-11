@@ -1,28 +1,32 @@
-from fastapi import FastAPI, Request
-from dotenv import load_dotenv
-from database.database import DB
+from fastapi import FastAPI, Request, Depends, Form
 from settings import settings
-from supabase import create_client, Client
-
-load_dotenv()
-
-
-db:Client = create_clinet(settings.database_url, settings.databse_key)
+import supabase
+from user.views import userroute
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy import Column, Integer, String, DateTime
+from models.base import Base
+from dependencies.session import engine
+from fastapi.responses import HTMLResponse
+from fastapi.templating import Jinja2Templates
+from fastapi.staticfiles import StaticFiles
+import os
 
 app = FastAPI()
 
-@app.middleware("http")
-async def add_session(request: Request, call_next):
-    request.session =  supabase.auth.get_session()
-    response = await call_next(request)
+Base.metadata.create_all(bind=engine)
+
+app.mount("/static", StaticFiles(directory="static"), name="static")
+app.include_router(userroute, prefix="/user")
+
+# Путь к шаблонам
+templates = Jinja2Templates(directory="templates")
 
 
 
-@app.get("/")
-async def root():
-    return {"message": "Hello World"}
+# Определение пути /enter с методом GET
+@app.get("/enter", response_class=HTMLResponse)
+def enter_form(request: Request):
+    # Возвращает HTML-страницу с формой регистрации
+    return templates.TemplateResponse("enter.html", {"request": request, "show_error": False})
 
 
-@app.get("/hello/{name}")
-async def say_hello(name: str):
-    return {"message": f"Hello {name}"}
