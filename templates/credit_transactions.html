@@ -3,52 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Credit Transactions</title>
-    <!-- Добавьте свои стили здесь, если нужно -->
+    <title>Remittance Transactions</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        h1 {
+            color: #3498db;
+            text-align: center;
+            margin-bottom: 30px;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            border-radius: 10px;
             margin-top: 20px;
         }
 
         th, td {
             border: 1px solid #ddd;
-            padding: 8px;
+            padding: 15px;
             text-align: left;
         }
 
         th {
-            background-color: #f2f2f2;
+            background-color: #3498db;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #ecf0f1;
+        }
+
+        tbody tr:hover {
+            background-color: #bdc3c7;
         }
     </style>
 </head>
 <body>
-    <h1>Credit Transactions</h1>
+    <h1>Remittance Transactions</h1>
 
     <table>
         <thead>
             <tr>
-                <th>Borrower</th>
-                <th>Type Credit</th>
+                <th>Count</th>
+                <th>Commission</th>
+                <th>Currency</th>
                 <th>Date</th>
-                <th>Sum Payment</th>
-                <th>Percent</th>
+                <th>Receiver</th>
+                <th>Success</th>
             </tr>
         </thead>
         <tbody>
             {% for transaction in transactions %}
                 <tr>
-                    <td>{{ transaction.borrower.user.name }}</td>
-                    <td>{{ transaction.credit.type }}</td>
+                    <td>{{ transaction.count }}</td>
+                    <td>{{ transaction.commission }}</td>
+                    <td>{{ transaction.currency.name }}</td>
                     <td>{{ transaction.date }}</td>
-                    <td>{{ transaction.sum_payment }}</td>
-                    <td>{{ transaction.credit.procent }}</td>
+                    <td>{{ transaction.receiver.user.name }}</td>
+                    <td>{{ transaction.success }}</td>
                 </tr>
             {% endfor %}
         </tbody>
