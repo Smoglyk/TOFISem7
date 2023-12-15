@@ -4,3 +4,5 @@ Lib
 Scripts
 __pycache__
 include
+migrations
+pyvenv.cfg
