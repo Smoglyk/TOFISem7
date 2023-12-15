@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaction Type Selection</title>
+    <style>
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            margin: 20px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        h1 {
+            color: #3498db;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 16px;
+            color: #333;
+        }
+
+        select {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            appearance: none;
+            background-color: #f8f8f8;
+            cursor: pointer;
+        }
+
+        select:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #2c81ba;
+        }
+    </style>
+</head>
+<body>
+    <h1>Transaction Type Selection</h1>
+
+    <form id="transactionForm" action="process/transaction" method="get">
+        <label for="transactionType">Select Transaction Type:</label>
+        <select id="transactionType" name="item">
+            <option value="payment">Payment</option>
+            <option value="credit">Credit</option>
+            <option value="remittance">Remittance</option>
+        </select>
+
+        <button type="button" onclick="processTransaction()">Proceed</button>
+    </form>
+
+    <script>
+        function processTransaction() {
+            var selectedTransaction = document.getElementById('transactionType').value;
+            var url = 'process/transaction?type_trans=' + selectedTransaction;
+            window.location.href = url;
+        }
+    </script>
+</body>
+</html>

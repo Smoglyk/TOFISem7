@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Взять кредит под 15%</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+        }
+
+        input[type="range"] {
+            width: calc(100% - 16px);
+            margin: 8px 0;
+        }
+
+        output {
+            display: block;
+            margin-top: 8px;
+            margin-bottom: 5px;
+            font-size: 14px;
+            color: #333;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<form action="/credit/apply" method="post">
+    {%if user_has_not_credit %}
+    <label for="currency">Выбрать валюту:</label>
+    <select id="currency" name="currency">
+        <option value="usd">USD</option>
+        <option value="eur">EUR</option>
+        <option value="rub">RUB</option>
+    </select>
+    <label for="loanAmount">Желаемая сумма кредита:</label>
+    <input type="range" id="loanAmount" name="loan_amount" min="0" step="1000" value="10000" oninput="updateLoanAmount(this.value)">
+    <output for="loanAmount" id="loanAmountOutput">0</output>
+
+    <label for="loanTerm">Срок кредита (в месяцах):</label>
+    <input type="range" id="loanTerm" name="loan_term" min="1" max="15" step="1" value="1" oninput="updateLoanTerm(this.value)">
+    <output for="loanTerm" id="loanTermOutput">1</output>
+
+    <label for="monthlyPayment">Ежемесячный платеж:</label>
+    <input type="text" id="monthlyPayment" name="monthly_payment" value="100" readonly>
+
+    <label for="loanPurpose">Цель кредита:</label>
+    <input type="text" id="loanPurpose" name="loan_purpose">
+
+    <label for="email">Электронная почта:</label>
+    <input type="email" id="email" name="email" required>
+
+    <button type="submit">Отправить заявку</button>
+    {% else %}
+        <div>You already has credit</div>
+    {% endif%}
+</form>
+
+<script>
+    function updateLoanAmount(value) {
+        document.getElementById('loanAmountOutput').textContent = value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+
+    function updateLoanTerm(value) {
+        document.getElementById('loanTermOutput').textContent = value;
+    }
+
+    document.getElementById('currency').addEventListener('change', function() {
+        let maxLoanAmount;
+
+        switch(this.value) {
+            case 'usd':
+                maxLoanAmount = 330000;
+                break;
+            case 'eur':
+                maxLoanAmount = 310000;
+                break;
+            case 'rub':
+            default:
+                maxLoanAmount = 30000000;
+                break;
+        }
+
+        document.getElementById('loanAmount').max = maxLoanAmount;
+        const currentLoanAmount = parseInt(document.getElementById('loanAmount').value, 10);
+        if (currentLoanAmount > maxLoanAmount) {
+            document.getElementById('loanAmount').value = maxLoanAmount;
+            updateLoanAmount(maxLoanAmount);
+        }
+    });
+</script>
+
+</body>
+</html>

@@ -2,9 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bank Dashboard</title>
-  <link rel="stylesheet" href="static/style.css">
+  <link rel="stylesheet" href="/static/style.css">
   <style>
     body {
       font-family: 'Arial', sans-serif;
@@ -75,20 +76,19 @@
 </head>
 <body>
   <h1>Welcome to Your Bank Dashboard</h1>
-
   <div class="section profile-section">
     <h2>Profile</h2>
-    <a href="account" class="button-like-link">View your account profile</a>
+    <a href="/user/account" class="button-like-link">View your account profile</a>
   </div>
 
   <div class="section transaction-section">
     <h2>Transactions</h2>
-    <p>Make transactions <a href="#">here</a>.</p>
+    <p>Make transactions <a href="/user/kind/transactions" class="button-like-link">here</a>.</p>
   </div>
 
   <div class="section credit-section">
     <h2>Credit</h2>
-    <p>Apply for a credit <a href="#">here</a>.</p>
+    <p>Apply for a credit <a href="/credit" class="button-like-link">here</a>.</p>
   </div>
 </body>
 </html>

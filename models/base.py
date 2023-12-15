@@ -1,7 +1,8 @@
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, Integer, String, DateTime, Boolean, ForeignKey, CheckConstraint
+from sqlalchemy import Column, Integer, String, DateTime, Boolean, ForeignKey, CheckConstraint, false
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
+from datetime import datetime
 
 
 Base = declarative_base()
@@ -37,7 +38,7 @@ class Account(Base):
     payment_transaction_receiver = relationship("PaymentTransaction", back_populates='receiver',
                                               foreign_keys='PaymentTransaction.receiver_id')
     credit_transaction = relationship("CreditTransaction", back_populates='borrower')
-    credit = relationship('Credit', back_populates='borrower')
+    credit = relationship('Credit', back_populates='borrower', uselist=False)
     user_id = Column(Integer, ForeignKey('user.id'))
     user = relationship('User', back_populates='account')
     role_id = Column(Integer, ForeignKey('role.id'))
@@ -101,17 +102,17 @@ class Payment(Base):
 class Credit(Base):
     __tablename__ = 'credit'
     id = Column(Integer, primary_key=True)
-    type = Column(String, nullable=False)
     procent = Column(Integer)
     currency_id = Column(Integer, ForeignKey('currency.id'))
     currency = relationship('Currency', back_populates='credit')
-    data_start = Column(DateTime(timezone=True), server_default=func.now())
+    data_start = Column(DateTime(timezone=True), default=datetime.now())
     data_end = Column(DateTime)
     borrower_id = Column(Integer, ForeignKey('account.id'))
     borrower = relationship('Account', back_populates='credit')
-    finaly = Column(Boolean)
+    finaly = Column(Boolean, default=false())
     total_sum = Column(Integer, nullable=False)
     remainder_sum = Column(Integer, nullable=False)
+    mounth_payment = Column(Integer)
     credit_transaction = relationship('CreditTransaction', back_populates='credit')
 
     __table_args__ = (
